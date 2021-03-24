@@ -29,4 +29,5 @@ ext {
     retrofitVersion = "2.9.0"
     roomVersion = '2.2.6'
     daggerVersion = '2.32'
+    navigationVersion = '2.3.4'
 }
