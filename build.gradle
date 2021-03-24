@@ -24,3 +24,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    retrofitVersion = "2.9.0"
+    roomVersion = '2.2.6'
+}
