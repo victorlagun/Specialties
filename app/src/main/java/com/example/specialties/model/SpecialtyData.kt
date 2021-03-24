@@ -1,6 +1,7 @@
 package com.example.specialties.model
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "employee")
 data class Employee(
@@ -12,25 +13,15 @@ data class Employee(
     val l_name: String?
 )
 
-    @Entity(tableName = "specialty")
+@Entity(tableName = "specialty")
 data class Specialty(
     val name: String,
     @PrimaryKey
     val specialty_id: Int
 )
 
-@Entity(primaryKeys = ["employeeId", "specialtyId"])
+@Entity(tableName = "employee_specialty_cross_ref", primaryKeys = ["employee_id", "specialty_id"])
 data class EmployeeSpecialtyCrossRef(
-    val employeeId: Int,
-    val specialtyId: Int
-)
-
-data class EmployeeWithSpecialty(
-    @Embedded val employee: Employee,
-    @Relation(
-        parentColumn = "employee_id",
-        entityColumn = "specialty_id",
-        associateBy = Junction(EmployeeSpecialtyCrossRef::class)
-    )
-    val specialty: List<Specialty>?
+    val employee_id: Int,
+    val specialty_id: Int
 )
