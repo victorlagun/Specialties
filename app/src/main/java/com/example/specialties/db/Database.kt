@@ -6,12 +6,12 @@ import com.example.specialties.model.Employee
 import com.example.specialties.model.EmployeeSpecialtyCrossRef
 import com.example.specialties.model.Specialty
 
-const val DB_NAME = "enterprise.db"
+const val DB_NAME = "specialties.db"
 
 @Database(
     entities = [
         Employee::class, Specialty::class, EmployeeSpecialtyCrossRef::class],
-    version = 0,
+    version = 1,
     exportSchema = true
 )
 abstract class Database : RoomDatabase() {

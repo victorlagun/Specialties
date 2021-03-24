@@ -4,17 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.specialties.R
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.specialty_list_fragment.*
+import javax.inject.Inject
 
-class SpecialtyListFragment : Fragment() {
+class SpecialtyListFragment : DaggerFragment() {
 
     companion object {
         fun newInstance() = SpecialtyListFragment()
     }
 
-    private lateinit var viewModel: SpecialtyListViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: SpecialtyListViewModel by viewModels {
+        viewModelFactory
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +33,9 @@ class SpecialtyListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SpecialtyListViewModel::class.java)
+        viewModel.getEmployees()
+            .observe(
+                this.viewLifecycleOwner,
+                { list -> if (list.isNotEmpty()) text.text = list.first().name })
     }
 }
