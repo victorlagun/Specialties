@@ -5,6 +5,8 @@ import androidx.room.RoomDatabase
 import com.example.specialties.model.Employee
 import com.example.specialties.model.Specialty
 
+const val DB_NAME = "enterprise.db"
+
 @Database(
     entities = [
         Employee::class, Specialty::class],
