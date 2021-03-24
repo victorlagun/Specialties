@@ -22,20 +22,26 @@ data class Response(
 
 data class SpecialtyDto(
     @SerializedName("name")
-    val name: String?,
+    val name: String,
     @SerializedName("specialty_id")
-    val specialtyId: Int?
+    val specialtyId: Int
 )
 
 fun Response.toEmployee() = Employee(
-    avatr_url  = this.avatrUrl,
+    employee_id = this.hashCode(),
+    avatr_url = this.avatrUrl,
     birthday = this.birthday,
     f_name = this.fName,
     l_name = this.lName,
-    specialty = specialty?.map { it.toSpecalty() }
 )
 
-fun SpecialtyDto.toSpecalty() = Specialty(
+fun SpecialtyDto.toSpecialty() = Specialty(
     name = this.name,
     specialty_id = this.specialtyId,
 )
+
+fun Response.toEmployeeWithSpecialty() =
+    EmployeeWithSpecialty(
+        employee = this.toEmployee(),
+        specialty = this.specialty?.map { specialtyDto -> specialtyDto.toSpecialty() }
+    )
