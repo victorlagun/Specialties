@@ -2,7 +2,7 @@ package com.example.specialties.model
 
 import com.google.gson.annotations.SerializedName
 
-data class SpecialityDataDto(
+data class SpecialtyDataDto(
     @SerializedName("response")
     val response: List<Response>
 )
@@ -40,7 +40,7 @@ fun SpecialtyDto.toSpecialty() = Specialty(
     specialty_id = this.specialtyId,
 )
 
-fun SpecialityDataDto.toEmployeeSpecialtyCrossRef() =
+fun SpecialtyDataDto.toEmployeeSpecialtyCrossRef() =
     this.response.map { list -> Pair(list.toEmployee(), list.specialty.map { it.toSpecialty() }) }
         .map { pair ->
             pair.second.map { specialty ->

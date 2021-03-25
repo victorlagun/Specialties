@@ -4,12 +4,11 @@ import com.example.specialties.api.Api
 import com.example.specialties.db.CrossRefDao
 import com.example.specialties.db.EmployeeDao
 import com.example.specialties.db.SpecialtyDao
-import com.example.specialties.model.SpecialityDataDto
+import com.example.specialties.model.SpecialtyDataDto
 import com.example.specialties.model.toEmployee
 import com.example.specialties.model.toEmployeeSpecialtyCrossRef
 import com.example.specialties.model.toSpecialty
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -27,9 +26,8 @@ class Repository
     fun refresh(): Observable<Unit> =
         api.getEmployees()
             .flatMap { fillDatabase(it) }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
 
-    private fun fillDatabase(specialityDataDto: SpecialityDataDto) = Observable.fromCallable {
+    private fun fillDatabase(specialityDataDto: SpecialtyDataDto) = Observable.fromCallable {
         employeeDao.insert(specialityDataDto.response.map { it.toEmployee() })
         specialtyDao.insert(specialityDataDto.response.map { response -> response.specialty.map { it.toSpecialty() } }
             .flatten())

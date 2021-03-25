@@ -12,6 +12,6 @@ interface SpecialtyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(specialty: List<Specialty>)
 
-    @Query("SELECT * FROM specialty ORDER BY name DESC")
+    @Query("SELECT * FROM specialty ORDER BY name ASC")
     fun getListOfSpecialty(): LiveData<List<Specialty>>
 }

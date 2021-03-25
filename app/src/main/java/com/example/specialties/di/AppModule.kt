@@ -60,4 +60,10 @@ class AppModule {
     fun provideCrossRefDao(db: Database): CrossRefDao {
         return db.crossRefDao()
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideLastUpdateDao(db: Database): LastUpdateDao {
+//        return db.lastUpdateDao()
+//    }
 }

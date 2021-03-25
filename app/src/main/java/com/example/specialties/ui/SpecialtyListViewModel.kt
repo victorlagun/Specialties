@@ -5,19 +5,24 @@ import androidx.lifecycle.ViewModel
 import com.example.specialties.model.Specialty
 import com.example.specialties.repository.Repository
 import com.example.specialties.util.addTo
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class SpecialtyListViewModel
 @Inject constructor(private val repository: Repository) : ViewModel() {
     private val disposables = CompositeDisposable()
-    fun getEmployees(): LiveData<List<Specialty>> {
-        refresh()
+    fun getSpecialties(errorAction: () -> Unit): LiveData<List<Specialty>> {
+        refresh(errorAction)
         return repository.getListOfSpecialties()
     }
 
-    fun refresh() {
-        repository.refresh().subscribe({},{it.printStackTrace()}).addTo(disposables)
+    private fun refresh(errorAction: () -> Unit) {
+        repository.refresh().observeOn(AndroidSchedulers.mainThread())
+            .subscribe({}, {
+                errorAction.invoke()
+                it.printStackTrace()
+            }).addTo(disposables)
 
     }
 
