@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Specialties</string>
-    <string name="content_description_image_employee">Фотография сотрудника</string>
     <string name="error_message">Произошла ошибка</string>
+    <string name="f_name">Имя: %1$s</string>
+    <string name="l_name">Фамилия: %1$s</string>
+    <string name="age">Возраст: %1$s</string>
+    <string name="birthday">Дата рождения: %1$s</string>
+    <string name="specialty">Специальность: %1$s</string>
 </resources>

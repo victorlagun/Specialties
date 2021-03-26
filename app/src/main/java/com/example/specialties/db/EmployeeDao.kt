@@ -12,9 +12,9 @@ interface EmployeeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(employee: List<Employee>)
 
-    @Query("SELECT * FROM employee WHERE employee_id IN (SELECT employee_id FROM employee_specialty_cross_ref WHERE specialty_id = :specialtyId) ORDER BY l_name DESC")
+    @Query("SELECT * FROM employee WHERE employee_id IN (SELECT employee_id FROM employee_specialty_cross_ref WHERE specialty_id = :specialtyId)")
     fun getListOfEmployee(specialtyId: Int): LiveData<List<Employee>>
 
-    @Query("SELECT * FROM employee WHERE employee_id = :employeeId ORDER BY l_name DESC")
+    @Query("SELECT * FROM employee WHERE employee_id = :employeeId")
     fun getEmployee(employeeId: Int): LiveData<Employee>
 }

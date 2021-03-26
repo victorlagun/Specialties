@@ -23,14 +23,13 @@
             android:layout_height="60dp">
 
             <ImageView
-                android:id="@+id/imageEmployee"
+                android:id="@+id/imageDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:src="@drawable/sh_circle"
-                android:contentDescription="@string/content_description_image_employee"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,10 +44,10 @@
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageEmployee"
+                app:layout_constraintBottom_toBottomOf="@+id/imageDot"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageEmployee"
-                app:layout_constraintTop_toTopOf="@+id/imageEmployee"
+                app:layout_constraintStart_toEndOf="@id/imageDot"
+                app:layout_constraintTop_toTopOf="@+id/imageDot"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="--" />
 
