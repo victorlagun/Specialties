@@ -22,6 +22,7 @@ class Repository
     fun getListOfSpecialties() = specialtyDao.getListOfSpecialty()
     fun getListOfEmployees(specialtyId: Int) = employeeDao.getListOfEmployee(specialtyId)
     fun getEmployee(employeeId: Int) = employeeDao.getEmployee(employeeId)
+    fun getEmployeeSpecialty(employeeId: Int) = specialtyDao.getEmployeeSpecialty(employeeId)
 
     fun refresh(): Observable<Unit> =
         api.getEmployees()

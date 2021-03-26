@@ -48,7 +48,7 @@ class EmployeeListFragment : DaggerFragment() {
     }
 
     private fun onClick(employee: Employee) = findNavController().navigate(
-        R.id.employeeListFragment,
+        R.id.employeeFragment,
         bundleOf(Pair(EMPLOYEE_ID, employee.employee_id))
     )
 }
